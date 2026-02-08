@@ -1,0 +1,25 @@
+{
+  "version": 7,
+  "configurePresets": [
+    {
+      "name": "conan-debug",
+      "description": "Default settings for Conan debug builds",
+      "cacheVariables": {
+        "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "${sourceDir}/cmake-config/cmake-conan/conan_provider.cmake",
+        "CONAN_INSTALL_ARGS": "-c;tools.cmake.cmaketoolchain:user_presets=False",
+        "CONAN_INSTALL_BUILD_CONFIGURATIONS": "Debug",
+        "QT_CREATOR_SKIP_PACKAGE_MANAGER_SETUP": true
+      }
+    },
+    {
+      "name": "conan-release",
+      "description": "Default settings for Conan release builds",
+      "cacheVariables": {
+        "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "${sourceDir}/cmake-config/cmake-conan/conan_provider.cmake",
+        "CONAN_INSTALL_ARGS": "-c;tools.cmake.cmaketoolchain:user_presets=False",
+        "CONAN_INSTALL_BUILD_CONFIGURATIONS": "Release",
+        "QT_CREATOR_SKIP_PACKAGE_MANAGER_SETUP": true
+      }
+    }
+  ]
+}

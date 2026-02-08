@@ -1,0 +1,47 @@
+{
+  "version": 7,
+  "configurePresets": [
+    {
+      "name": "base-debug",
+      "displayName": "Debug",
+      "description": "Default settings for debug build configuration",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "base-release",
+      "displayName": "Release",
+      "description": "Defaule settings for release build configuration",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "base-debug",
+      "configurePreset": "base-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "base-release",
+      "configurePreset": "base-release",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "base-debug",
+      "configurePreset": "base-debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "base-release",
+      "configurePreset": "base-release",
+      "configuration": "Release"
+    }
+  ]
+}
