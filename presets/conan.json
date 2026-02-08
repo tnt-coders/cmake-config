@@ -21,5 +21,25 @@
         "QT_CREATOR_SKIP_PACKAGE_MANAGER_SETUP": true
       }
     }
+  ],
+  "buildPresets": [
+    {
+      "name": "conan-debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "conan-release",
+      "configurePreset": "release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "conan-debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "conan-release",
+      "configurePreset": "release"
+    }
   ]
 }
