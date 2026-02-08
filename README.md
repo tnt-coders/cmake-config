@@ -1,6 +1,6 @@
-# cmake-config
+# project-config
 
-Reusable CMake preset configurations that can be shared across projects via Git submodules.
+Reusable project configuration and CMake preset can be shared across projects via Git submodules.
 
 ## Setup
 
