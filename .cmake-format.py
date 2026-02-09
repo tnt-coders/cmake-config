@@ -25,10 +25,10 @@ with section("format"):
   disable = False
 
   # How wide to allow formatted cmake files
-  line_width = 80
+  line_width = 100
 
   # How many spaces to tab for indent
-  tab_size = 2
+  tab_size = 4
 
   # If true, lines are indented using tab characters (utf-8 0x09) instead of
   # <tab_size> space characters (utf-8 0x20). In cases where the layout would
