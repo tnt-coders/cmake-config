@@ -3,6 +3,7 @@
   "configurePresets": [
     {
       "name": "default-debug",
+      "hidden": true,
       "displayName": "Debug",
       "description": "Default settings for debug build configuration",
       "binaryDir": "${sourceDir}/build/debug",
@@ -12,6 +13,7 @@
     },
     {
       "name": "default-release",
+      "hidden": true,
       "displayName": "Release",
       "description": "Defaule settings for release build configuration",
       "binaryDir": "${sourceDir}/build/release",
