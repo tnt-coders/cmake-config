@@ -148,10 +148,6 @@ CheckOptions:
     value: lower_case
   - key: readability-identifier-naming.ClassConstantPrefix
     value: g_
-  - key: readability-identifier-naming.ConstexprVariableCase
-    value: lower_case
-  - key: readability-identifier-naming.ConstexprVariablePrefix
-    value: g_
 
   # --------------------------------------------------------------------------
   # Global Variables (non-const)

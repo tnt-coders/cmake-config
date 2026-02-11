@@ -1,3 +1,4 @@
 ---
 BasedOnStyle: Microsoft
 ColumnLimit: 100
+PointerAlignment: Left
