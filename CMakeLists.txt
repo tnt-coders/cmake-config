@@ -1,4 +1,5 @@
-# Call find_package() on a dummy package to satisfy cmake-conan even if the project has no dependencies
+# Call find_package() on a dummy package to satisfy cmake-conan even if the project has no
+# dependencies
 find_package(__CONAN_DUMMY__ QUIET)
 
 # Copy shared formatter/linter config files to the project root
