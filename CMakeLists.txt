@@ -7,7 +7,10 @@ if(RUN_CLANG_TIDY_PROGRAM AND EXISTS "${CMAKE_SOURCE_DIR}/.clang-tidy")
     # On Windows, run-clang-tidy is a Python script that can't be executed directly
     set(RUN_CLANG_TIDY_COMMAND "${RUN_CLANG_TIDY_PROGRAM}")
     if(WIN32)
-        find_package(Python3 COMPONENTS Interpreter REQUIRED)
+        find_package(
+            Python3
+            COMPONENTS Interpreter
+            REQUIRED)
         set(RUN_CLANG_TIDY_COMMAND "${Python3_EXECUTABLE}" "${RUN_CLANG_TIDY_PROGRAM}")
     endif()
 
