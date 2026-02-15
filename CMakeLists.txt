@@ -20,7 +20,7 @@ if(RUN_CLANG_TIDY_PROGRAM AND EXISTS "${CMAKE_SOURCE_DIR}/.clang-tidy")
     # Add a target to run clang-tidy
     add_custom_target(
         clang-tidy
-        COMMAND ${RUN_CLANG_TIDY_COMMAND} -p "${CMAKE_BINARY_DIR}" -allow-no-checks
+        COMMAND ${RUN_CLANG_TIDY_COMMAND} -p "${CMAKE_BINARY_DIR}"
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         COMMENT "Running clang-tidy"
         USES_TERMINAL)
@@ -28,7 +28,7 @@ if(RUN_CLANG_TIDY_PROGRAM AND EXISTS "${CMAKE_SOURCE_DIR}/.clang-tidy")
     # Add a target to run clang-tidy and apply fixes
     add_custom_target(
         clang-tidy-fix
-        COMMAND ${RUN_CLANG_TIDY_COMMAND} -p "${CMAKE_BINARY_DIR}" -allow-no-checks -fix
+        COMMAND ${RUN_CLANG_TIDY_COMMAND} -p "${CMAKE_BINARY_DIR}" -fix
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         COMMENT "Running clang-tidy with fixes"
         USES_TERMINAL)
