@@ -1,5 +1,7 @@
 # project-config
 
+[![Verify](https://github.com/tnt-coders/project-config/actions/workflows/verify.yml/badge.svg)](https://github.com/tnt-coders/project-config/actions/workflows/verify.yml)
+
 Reusable project configuration and CMake preset can be shared across projects via Git submodules.
 
 ## Setup
