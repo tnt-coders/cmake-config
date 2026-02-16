@@ -17,10 +17,22 @@ if(RUN_CLANG_TIDY_PROGRAM AND EXISTS "${CMAKE_SOURCE_DIR}/.clang-tidy")
         set(RUN_CLANG_TIDY_COMMAND "${Python3_EXECUTABLE}" "${RUN_CLANG_TIDY_PROGRAM}")
     endif()
 
+    # On Apple platforms, Homebrew LLVM's clang-tidy needs the SDK sysroot to find system headers
+    set(CLANG_TIDY_EXTRA_ARGS "")
+    if(APPLE)
+        execute_process(
+            COMMAND xcrun --show-sdk-path
+            OUTPUT_VARIABLE APPLE_SDK_PATH
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
+        if(APPLE_SDK_PATH)
+            set(CLANG_TIDY_EXTRA_ARGS "-extra-arg=--sysroot=${APPLE_SDK_PATH}")
+        endif()
+    endif()
+
     # Add a target to run clang-tidy
     add_custom_target(
         clang-tidy
-        COMMAND ${RUN_CLANG_TIDY_COMMAND} -p "${CMAKE_BINARY_DIR}"
+        COMMAND ${RUN_CLANG_TIDY_COMMAND} -p "${CMAKE_BINARY_DIR}" ${CLANG_TIDY_EXTRA_ARGS}
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         COMMENT "Running clang-tidy"
         USES_TERMINAL)
@@ -28,7 +40,7 @@ if(RUN_CLANG_TIDY_PROGRAM AND EXISTS "${CMAKE_SOURCE_DIR}/.clang-tidy")
     # Add a target to run clang-tidy and apply fixes
     add_custom_target(
         clang-tidy-fix
-        COMMAND ${RUN_CLANG_TIDY_COMMAND} -p "${CMAKE_BINARY_DIR}" -fix
+        COMMAND ${RUN_CLANG_TIDY_COMMAND} -p "${CMAKE_BINARY_DIR}" ${CLANG_TIDY_EXTRA_ARGS} -fix
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         COMMENT "Running clang-tidy with fixes"
         USES_TERMINAL)
