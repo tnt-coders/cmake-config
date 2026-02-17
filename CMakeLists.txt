@@ -36,7 +36,7 @@ if(PROJECT_CONFIG_ENABLE_DOCS)
 
         add_custom_target(
             docs
-            COMMAND ${DOXYGEN_EXECUTABLE} "${DOXYFILE_TO_USE}"
+            COMMAND ${DOXYGEN_EXECUTABLE} "${DOXYFILE}"
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
             COMMENT "Generating API documentation with Doxygen"
             VERBATIM)
