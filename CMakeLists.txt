@@ -1,16 +1,32 @@
-# Find doxygen
-find_package(Doxygen QUIET)
+# Find doxygen (and optionally dot for graph generation)
+find_package(Doxygen QUIET OPTIONAL_COMPONENTS dot)
 
 # If docs exist for the current project and doxygen is found, add docs target
-if (DOXYGEN_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/docs/Doxyfile")
-add_custom_target(
+if (Doxygen_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/docs/Doxyfile.in")
+
+    # If dot is found, enable diagrams
+    if(Doxygen_dot_FOUND)
+        set(DOXYGEN_HAVE_DOT "YES")
+        message(STATUS "Project-Config: Graphviz dot found, enabling diagrams")
+    else()
+        set(DOXYGEN_HAVE_DOT "NO")
+        message(STATUS "Project-Config: Graphviz dot not found, disabling diagrams")
+    endif()
+
+    # Configure doxygen
+    configure_file(
+        ${CMAKE_SOURCE_DIR}/docs/Doxyfile.in
+        ${CMAKE_BINARY_DIR}/Doxyfile
+        @ONLY)
+
+    add_custom_target(
         docs
-        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/docs/Doxyfile
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
 else()
-    message(STATUS "Project-Config: doxygen or docs/Doxyfile not found, skipping docs target")
+    message(STATUS "Project-Config: doxygen or docs/Doxyfile.in not found, skipping docs target")
 endif()
 
 # Find clang-tidy
