@@ -1,4 +1,8 @@
-"""Doxygen input filter that converts GitHub Flavored Markdown admonitions to Doxygen commands."""
+"""Doxygen input filter that converts GitHub Flavored Markdown for Doxygen compatibility.
+
+- Converts GFM admonitions to Doxygen commands
+- Strips CI badge lines (they reference live GitHub endpoints that may show stale status)
+"""
 
 import re
 import sys
@@ -13,6 +17,7 @@ ADMONITION_MAP = {
 
 ADMONITION_RE = re.compile(r"^>\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*$")
 CONTINUATION_RE = re.compile(r"^>\s?(.*)$")
+BADGE_RE = re.compile(r"^\[!\[.*\]\(.*badge.*\)\]\(.*\)$")
 
 
 def convert(lines):
@@ -33,6 +38,8 @@ def convert(lines):
                     break
             body = " ".join(line for line in body_lines if line).strip()
             out.append(f"@{command} {body}")
+        elif BADGE_RE.match(lines[i]):
+            i += 1
         else:
             out.append(lines[i])
             i += 1
